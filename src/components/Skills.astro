@@ -1,0 +1,60 @@
+---
+const skills = [
+  {
+    title: "Frontend Development",
+    items: [
+      {name: "HTML", icon: "/skill/html.png"},
+      {name: "Tailwind CSS", icon: "/skill/tailwind.png"},
+      {name: "Bootstrap", icon: "/skill/bootstrap.png"},
+      {name: "Javascript", icon: "/skill/js.png"},
+      {name: "vue.js", icon: "/skill/vue.png"},
+    ],
+  },
+  {
+    title: "Backend Development",
+    items: [
+      {name: "PHP", icon: "/skill/php.png"},
+      {name: "Laravel", icon: "/skill/laravel.png"},
+      {name: "REST APIs", icon: "/skill/api.png"},
+      {name: "MYSQL", icon: "/skill/mysql.png"},
+      {name: "Livewire",icon: "/skill/livewire.png"}
+    ]
+  },
+  {
+    title: "Tools & Cloud",
+    items: [
+      {name: "Git & Github", icon: "/skill/git.png"},
+      {name: "Vs Code", icon: "/skill/vscode.png"},
+      {name:"Vercel",icon: "/skill/vercel.png"},
+      {name: "AWS", icon: "/skill/aws.png"},
+      {name: "Postman", icon: "/skill/postman.png"}
+    ],
+  },
+];
+
+---
+
+<section class="py-10 px-10 md:px-10 bg-gradient-to-br from-[#020617] via-[#020617] to-[#0f172a] text-white ">
+  <div class="max-w-7xl mx-auto">
+     <h2 class="text-3xl md:text-4xl font-bold mb-10">Skills</h2>
+
+     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {skills.map((category) => (
+        <div class="p-6 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-indigo-500 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10">
+          <h3 class="text-lg font-semibold mb-5 text-indigo-400">{category.title}</h3>
+          <ul class="space-y-4">
+            {category.items.map((item) => (
+              <li class="flex items-center gap-3">
+                <img src={item.icon} alt={item.name} class="w-6 h-6 object-contain group-hover::scale=110 transition"/>
+                <span class="text-gray-300 group-hover:text-white transition">{item.name}</span>
+              </li>
+            ))} 
+          </ul>
+        </div>
+      ))}
+     </div>
+     <div class="flex justify-center mt-12">
+      <button class="px-6 py-3 rounded-xl  bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 transition textt-white font-medium shadow-lg shadow-indigo-500/20">View All Skills</button>
+     </div>
+  </div>
+</section>

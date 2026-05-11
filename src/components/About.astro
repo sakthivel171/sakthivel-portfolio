@@ -1,0 +1,97 @@
+---
+
+const features = [
+  "Full Stack Development",
+  "Modern & Responsive UI",
+  "Rest API Integration",
+  "Clean Backend Architecture"
+]
+
+---
+
+<section class="relative overflow-hidden  bg-[#050816] text-white py-10 px-4 sm:px-6 lg:px-8">
+  <div class="absolute top-0 left-0 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full"></div>
+
+  <div class="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+          <ion-icon name="code-slash-outline" style="font-size: 22px; color: white;"></ion-icon>
+        </div>
+        <p class="text-indigo-400  tracking-[4px] text-xl">About Me</p>
+      </div>
+
+      <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4">
+        Passionate About
+        <span class="bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text">
+          Building Modern Web Apps
+        </span>
+      </h2>
+
+      <p  class="text-gray-400 text-base leading-relaxed mb-6 max-w-lg">
+        I'm <span class="text-white font-semibold">Sakthivel</span>, a Full Stack Developer
+        building scalable, high-performance web apps with Vue.js, Laravel, Tailwind CSS and More...
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-3 mb-8">
+        {features.map((item) => (
+          <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 hover:bg-white/10 hover:-translate-y-0.5 transition duration-300 ">
+            <ion-icon name="checkmark-circle-outline" style="font-size: 18px; color: #818cf8; flex-shrink: 0;"></ion-icon>
+            <p class="text-gray-300 text-sm font-medium">{item}</p>
+          </div>
+        ))}
+      </div>
+      <a href="/about-more" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/200 ">Read More   →</a>
+    </div>
+
+    <div class="relative flex justify-center">
+      <div class="relative w-full max-w-sm">
+        <div class="absolute inset-0 bg-indigo-500/20 blur-[80px] rounded-full"></div>
+
+        <div class="relative bg-white/5 border-white/10 backdrop-blur-2xl rounded-[28px] p-7 shadow-2xl">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <p class="text-gray-500 text-xs mb-1">Experience</p>
+              <h3 class="text-4xl font-bold text-indigo-400">1+</h3>
+              <p class="text-gray-500 text-xs">Years Working</p>
+            </div>
+            
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+              <ion-icon name="rocket-outline" style="font-size: 28px; color: white;"></ion-icon>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mb-5">
+            <div class="bg-[#0F172A] border border-white/10 rounded-2xl p-4 text-center">
+              <h4 class="text-2xl font-bold text-purple-400 mb-0.5">10+</h4>
+              <p class="text-gray-400 text-xs">Projects</p>
+            </div>
+
+             <div class="bg-[#0F172A] border border-white/10 rounded-2xl p-4 text-center">
+              <h4 class="text-2xl font-bold text-purple-400 mb-0.5">5+</h4>
+              <p class="text-gray-400 text-xs">Technologies</p>
+            </div>
+          </div>
+          
+          <div class="bg-[#0F172A] border border-white/10 rounded-2xl px-5 py-4 flex items-center gap-3">
+            <ion-icon name="flash-outline" style="font-size: 22px; color: #818cf8; flex-shrink: 0;"></ion-icon>
+            <div>
+              <p class="text-white text-sm font-medium">Currently Building</p>
+              <p class="text-gray-500 text-xs">Full stack web projects</p>
+            </div>
+          </div>
+
+          <!-- <div class="absolute -top-4 -right-1 bg-indigo-950">
+            <span class="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Available
+            </span>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,104 @@
+---
+
+const projects = [
+{
+  title: "Student Management System",
+  desc: "A complete student management system",
+  image: "",
+  tech: ["Laravel", "MYSQL","Tailwind CSS"],
+  live: "",
+  github: "",
+},
+{
+  title: "Portfolio Website",
+  desc: " Personal developer Portfolio built with Astro and Tailwind CSS",
+  image: "",
+  tech: ["Astro","Tailwind CSS", "Javascript"],
+  live: "",
+  github: "",
+},
+// {
+//   title: "CRUD Operation",
+//   desc: "A complete student management system",
+//   image: "",
+//   tech: [],
+//   live: "",
+//   github: "",
+// },
+{
+  title: "Simple Calculator",
+  desc: "A complete student management system",
+  image: "",
+  tech: ["HTML","css", "Javascript"],
+  live: "",
+  github: "",
+},
+]
+
+---
+
+<section class="relative overflow-hidden bg-[#050816] text-white py-20 px-4 sm:px-6 lg:px-8">
+
+  <div class="relative max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="text-indigo-400 uppercase tracking-[4px] text-sm mb-3">What I've Built</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+      <p class="text-gray-400 text-sm max-w-md mx-auto leading-relaxed">A selection of real-world projects I've designed and developed from scratch.</p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+      {projects.map((project) => (
+        <div class="group flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300">
+          <div class="relative h-48 overflow-hidden bg-[#0f172a]">
+            <img src={project.image} alt={project.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-500"/>
+
+            <div class="fallback-icon absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none">
+              <ion-icon name="code-slash-outline" style="font-size: 48px; color: #4f46e5; opacity: 0.4;"></ion-icon>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-from-[#050816]/80 to-transparent"></div>
+          </div>
+
+          <div class="flex flex-col flex-1 p-5">
+            <h3 class="text-base font-bold text-white mb-2">{project.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{project.desc}</p>
+
+            <div class="flex flex-wrap gap-2 mb-5">
+              {project.tech.map((t) => (
+                <span class="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-[11px] font-medium">{t}</span>
+              ))}
+            </div>
+
+            <div class="flex gap-3">
+              <a href="{}" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
+                <ion-icon name="logo-github" style="font-size: 16px;"></ion-icon>
+                GitHub
+              </a>
+
+               <a href="{}" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
+                <ion-icon name="open-outline" style="font-size: 16px;"></ion-icon>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex justify-center">
+      <a href="/projects" class="flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 transition duration-300">
+        View All Projects
+        <ion-icon name="arrow-forward-outline" style="font-size: 16px;"></ion-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fallback-bg {
+    background: :linear-gradient(135deg,#0f172a, #1e1b4b );
+  }
+  .fallback-bg .fallback-icon {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+</style>

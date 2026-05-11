@@ -1,0 +1,207 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const education = [
+  {
+    title: "B.Sc Computer Science",
+    school: "XYZ College — Chennai",
+    year: "2021 - 2024",
+    score: "CGPA: 8.2",
+    icon: "school-outline",
+  },
+  {
+    title: "Higher Secondary Education",
+    school: "ABC Higher Secondary School",
+    year: "2019 - 2021",
+    score: "Percentage: 82%",
+    icon: "book-outline",
+  },
+  {
+    title: "SSLC",
+    school: "ABC Higher Secondary School",
+    year: "2018 - 2019",
+    score: "Percentage: 78%",
+    icon: "library-outline",
+  },
+];
+
+const stats = [
+  { value: "1+",  label: "Years Experience", icon: "briefcase-outline" },
+  { value: "10+", label: "Projects Built",   icon: "code-slash-outline" },
+  { value: "5+",  label: "Technologies",     icon: "layers-outline" },
+  { value: "3",   label: "Happy Clients",    icon: "people-outline" },
+];
+
+const interests = [
+  { label: "Web Development",  icon: "globe-outline" },
+  { label: "Open Source",      icon: "logo-github" },
+  { label: "UI/UX Design",     icon: "color-palette-outline" },
+  { label: "Problem Solving",  icon: "bulb-outline" },
+];
+---
+
+<MainLayout>
+  <section class="relative overflow-hidden min-h-screen bg-gradient-to-br from-[#020617] via-[#020617] to-[#0f172a] text-white py-20 px-4 sm:px-6 lg:px-8">
+
+    <!-- Background Glows -->
+    <div class="absolute top-0 left-0 w-80 h-80 bg-indigo-500/20 blur-[140px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full pointer-events-none"></div>
+
+    <div class="relative max-w-4xl mx-auto">
+
+      <!-- ── Heading ── -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+            <ion-icon name="person-outline" style="font-size: 22px; color: white;"></ion-icon>
+          </div>
+          <p class="text-indigo-400 tracking-[4px] text-sm uppercase">About Me</p>
+        </div>
+
+        <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
+          Passionate About
+          <span class="bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text">
+            Building Modern Web Apps
+          </span>
+        </h2>
+
+        <div class="space-y-4 text-gray-400 leading-relaxed text-[15px] md:text-base max-w-3xl">
+          <p>
+            Hi, I'm <span class="text-white font-semibold">Sakthivel</span> —
+            a Full Stack Developer passionate about creating scalable and modern web applications.
+          </p>
+          <p>
+            I specialize in building responsive frontend interfaces using Vue.js, Tailwind CSS,
+            Astro and integrating backend systems with Laravel & MySQL.
+          </p>
+          <p>
+            I enjoy transforming ideas into real-world products with clean UI,
+            optimized performance and user-friendly experiences.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── Stats Row ── -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+        {stats.map((s) => (
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300">
+            <div class="flex justify-center mb-2">
+              <ion-icon name={s.icon} style="font-size: 22px; color: #818cf8;"></ion-icon>
+            </div>
+            <p class="text-2xl font-bold text-indigo-400 mb-0.5">{s.value}</p>
+            <p class="text-gray-500 text-xs">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- ── Currently section ── -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-14 hover:border-indigo-500/40 transition duration-300">
+        <div class="flex items-center gap-2 mb-4">
+          <ion-icon name="flash-outline" style="font-size: 18px; color: #818cf8;"></ion-icon>
+          <h3 class="text-base font-semibold text-white">Currently</h3>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <ion-icon name="briefcase-outline" style="font-size: 14px; color: #34d399;"></ion-icon>
+            </div>
+            <div>
+              <p class="text-white text-sm font-medium">Working at</p>
+              <p class="text-gray-400 text-xs mt-0.5">Uzhavarbumi Agro Products</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <ion-icon name="code-slash-outline" style="font-size: 14px; color: #818cf8;"></ion-icon>
+            </div>
+            <div>
+              <p class="text-white text-sm font-medium">Building</p>
+              <p class="text-gray-400 text-xs mt-0.5">Full stack web projects</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <ion-icon name="location-outline" style="font-size: 14px; color: #a78bfa;"></ion-icon>
+            </div>
+            <div>
+              <p class="text-white text-sm font-medium">Based in</p>
+              <p class="text-gray-400 text-xs mt-0.5">Chennai, Tamil Nadu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Interests ── -->
+      <div class="mb-14">
+        <div class="flex items-center gap-2 mb-5">
+          <ion-icon name="heart-outline" style="font-size: 18px; color: #818cf8;"></ion-icon>
+          <h3 class="text-base font-semibold text-white">Interests</h3>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          {interests.map((interest) => (
+            <span class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-indigo-500/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
+              <ion-icon name={interest.icon} style="font-size: 15px;"></ion-icon>
+              {interest.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Education ── -->
+      <div class="mb-14">
+        <div class="flex items-center gap-2 mb-8">
+          <ion-icon name="school-outline" style="font-size: 20px; color: #818cf8;"></ion-icon>
+          <h3 class="text-2xl font-bold text-white">Education</h3>
+        </div>
+
+        <div class="space-y-5">
+          {education.map((item) => (
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300">
+              <div class="flex gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                  <ion-icon name={item.icon} style="font-size: 22px; color: #818cf8;"></ion-icon>
+                </div>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                    <h4 class="text-base font-bold text-white">{item.title}</h4>
+                    <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-400 text-xs">{item.year}</span>
+                  </div>
+                  <p class="text-gray-400 text-sm mb-1">{item.school}</p>
+                  <span class="inline-flex items-center gap-1.5 text-xs text-indigo-300">
+                    <ion-icon name="ribbon-outline" style="font-size: 13px;"></ion-icon>
+                    {item.score}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── CTA ── -->
+      <div class="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8 text-center">
+        <h3 class="text-xl font-bold text-white mb-2">Let's Work Together</h3>
+        <p class="text-gray-400 text-sm mb-6 max-w-sm mx-auto">
+          I'm open to freelance projects, full-time roles and exciting collaborations.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a
+            href="#contact"
+            class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/20"
+          >
+            <ion-icon name="mail-outline" style="font-size: 16px;"></ion-icon>
+            Contact Me
+          </a>
+          <a
+            href="/projects"
+            class="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm text-gray-300 hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200"
+          >
+            <ion-icon name="folder-outline" style="font-size: 16px;"></ion-icon>
+            View Projects
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</MainLayout>

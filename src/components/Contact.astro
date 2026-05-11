@@ -1,0 +1,122 @@
+---
+const icons = [
+  {
+    img: "/icons/linkedin.png",
+    link: "#",
+    name: "LinkedIn",
+  },
+
+  {
+    img: "/icons/git.png",
+    link: "#",
+    name: "GitHub",
+  },
+
+  {
+    img: "/icons/gmail.png",
+    link: "#",
+    name: "Gmail",
+  },
+
+  {
+    img: "/icons/facebook.png",
+    link: "#",
+    name: "Facebook",
+  },
+
+  {
+    img: "/icons/instagram.png",
+    link: "#",
+    name: "Instagram",
+  },
+];
+---
+
+<section class="relative overflow-hidden min-h-screen bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#020617] text-white flex items-center justify-center px-4 py-20">
+
+  <div class="absolute top-0 left-0 w-80 h-80 bg-indigo-500/20 blur-[140px] rounded-full"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full"></div>
+
+  <div class="relative w-full max-w-6xl grid lg:grid-cols-2 gap-12 items-center">
+
+    <div>
+      <p class="text-indigo-400 uppercase tracking-[4px] text-sm mb-4">Contact Me</p>
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+        Let’s Build Something
+        <span class="bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text">
+          Great
+        </span>
+      </h1>
+
+      <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">Have a project in mind? Reach out and let's start a conversation.</p>
+
+      <div class="space-y-5 mb-10">
+        <div class="flex items-center gap-4">
+
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                <ion-icon name="mail-outline" style="font-size: 22px; color: #818cf8;"></ion-icon>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">Email</p>
+                <p class="text-white font-medium">sakthivel@example.com</p>
+            </div>
+        </div>  
+
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                <ion-icon name="call-outline" style="font-size: 22px; color: #c084fc;"></ion-icon>
+            </div>
+
+          <div>
+            <p class="text-sm text-gray-500">Phone</p>
+            <p class="text-white font-medium">+91 98765 43210</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center">
+                <ion-icon  name="location-outline"style="font-size: 22px; color: #f472b6;"></ion-icon>
+            </div>
+
+            <div>
+                <p class="text-sm text-gray-500">Location</p>
+                <p class="text-white font-medium"> Chennai, Tamil Nadu</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="flex gap-4 flex-wrap">
+        {icons.map((icon) => (
+          <a href={icon.link} class="group relative w-14 h-14 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/20 overflow-hidden">
+
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/20 group-hover:to-purple-500/20 transition duration-300"></div>
+            <img src={icon.img} alt={icon.name} class="relative z-10 w-7 h-7 object-contain transition duration-300 group-hover:scale-110"/>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl"></div>
+      <form class="relative space-y-5 bg-white/[0.04] backdrop-blur-2xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl shadow-indigo-500/10">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold mb-2">Send a Message</h2>
+          <p class="text-gray-400 text-sm"> Fill out the form below and I'll get back to you soon. </p>
+        </div>
+
+        <input type="text" placeholder="Enter Your Name" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
+
+        <input type="email" placeholder="Enter Your Email" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
+
+        <input type="text" placeholder="Subject" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
+
+        <textarea rows="5" placeholder="Write Your Message..." class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300 resize-none"></textarea>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 transition duration-300 text-white font-semibold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
+          Send Message →
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
