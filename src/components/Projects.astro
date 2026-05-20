@@ -4,43 +4,43 @@ const projects = [
 {
   title: "Student Management System",
   desc: "A complete student management system",
-  image: "",
+  image: "/projects/project-sms.png",
   tech: ["Laravel", "MYSQL","Tailwind CSS"],
   live: "",
-  github: "",
+  github: "https://github.com/sakthivel171/student_management-system",
 },
 {
   title: "Portfolio Website",
   desc: " Personal developer Portfolio built with Astro and Tailwind CSS",
-  image: "",
+  image: "/projects/portfolio.png",
   tech: ["Astro","Tailwind CSS", "Javascript"],
   live: "",
-  github: "",
+  github: "https://github.com/sakthivel171/sakthivel-portfolio",
+},
+{
+  title: "CRUD Operation",
+  desc: "A complete student management system",
+  image: "/projects/crud.png",
+  tech: [],
+  live: "",
+  github: "https://github.com/sakthivel171/CRUD_operation",
 },
 // {
-//   title: "CRUD Operation",
+//   title: "Simple Calculator",
 //   desc: "A complete student management system",
 //   image: "",
-//   tech: [],
+//   tech: ["HTML","css", "Javascript"],
 //   live: "",
 //   github: "",
 // },
-{
-  title: "Simple Calculator",
-  desc: "A complete student management system",
-  image: "",
-  tech: ["HTML","css", "Javascript"],
-  live: "",
-  github: "",
-},
 ]
-
+  
 ---
 
-<section class="relative overflow-hidden bg-[#050816] text-white py-20 px-4 sm:px-6 lg:px-8">
+<section id="projects" class="relative overflow-hidden bg-[#050816] text-white py-10 px-4 sm:px-6 lg:px-8 lg:py-10 scroll-mt-15">
 
   <div class="relative max-w-6xl mx-auto">
-    <div class="text-center mb-14">
+    <div class="text-center mb-4">
       <p class="text-indigo-400 uppercase tracking-[4px] text-sm mb-3">What I've Built</p>
       <h2 class="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
       <p class="text-gray-400 text-sm max-w-md mx-auto leading-relaxed">A selection of real-world projects I've designed and developed from scratch.</p>
@@ -62,14 +62,14 @@ const projects = [
             <h3 class="text-base font-bold text-white mb-2">{project.title}</h3>
             <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{project.desc}</p>
 
-            <div class="flex flex-wrap gap-2 mb-5">
+            <div class="flex flex-wrap gap-2">
               {project.tech.map((t) => (
                 <span class="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-[11px] font-medium">{t}</span>
               ))}
             </div>
 
             <div class="flex gap-3">
-              <a href="{}" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
+              <a href={project.github} target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
                 <ion-icon name="logo-github" style="font-size: 16px;"></ion-icon>
                 GitHub
               </a>
@@ -85,7 +85,7 @@ const projects = [
     </div>
 
     <div class="flex justify-center">
-      <a href="/projects" class="flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 transition duration-300">
+      <a href="/Allprojects" class="flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 transition duration-300">
         View All Projects
         <ion-icon name="arrow-forward-outline" style="font-size: 16px;"></ion-icon>
       </a>

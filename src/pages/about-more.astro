@@ -3,24 +3,27 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 const education = [
   {
-    title: "B.Sc Computer Science",
-    school: "XYZ College — Chennai",
-    year: "2021 - 2024",
+    title: "B.Tech Information Technology",
+    school: "MAM College of Engineering and Technology",
+    name: "Siruganur , Trichy",
+    year: "2021 - 2025",
     score: "CGPA: 8.2",
     icon: "school-outline",
   },
   {
     title: "Higher Secondary Education",
-    school: "ABC Higher Secondary School",
+    school: "BHEL Matriculation Hr. Sec School ",
+    name: "Kailash Nagar, Trichy",
     year: "2019 - 2021",
     score: "Percentage: 82%",
     icon: "book-outline",
   },
   {
     title: "SSLC",
-    school: "ABC Higher Secondary School",
+    school: "HAPF Paramahamsa Matriculation School",
     year: "2018 - 2019",
-    score: "Percentage: 78%",
+    name: "HAPF Trichy",
+    score: "Percentage: 76%",
     icon: "library-outline",
   },
 ];
@@ -29,7 +32,7 @@ const stats = [
   { value: "1+",  label: "Years Experience", icon: "briefcase-outline" },
   { value: "10+", label: "Projects Built",   icon: "code-slash-outline" },
   { value: "5+",  label: "Technologies",     icon: "layers-outline" },
-  { value: "3",   label: "Happy Clients",    icon: "people-outline" },
+  // { value: "3",   label: "Happy Clients",    icon: "people-outline" },
 ];
 
 const interests = [
@@ -43,7 +46,6 @@ const interests = [
 <MainLayout>
   <section class="relative overflow-hidden min-h-screen bg-gradient-to-br from-[#020617] via-[#020617] to-[#0f172a] text-white py-20 px-4 sm:px-6 lg:px-8">
 
-    <!-- Background Glows -->
     <div class="absolute top-0 left-0 w-80 h-80 bg-indigo-500/20 blur-[140px] rounded-full pointer-events-none"></div>
     <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full pointer-events-none"></div>
 
@@ -66,25 +68,37 @@ const interests = [
         </h2>
 
         <div class="space-y-4 text-gray-400 leading-relaxed text-[15px] md:text-base max-w-3xl">
-          <p>
-            Hi, I'm <span class="text-white font-semibold">Sakthivel</span> —
-            a Full Stack Developer passionate about creating scalable and modern web applications.
+          <p> Hi, I'm <span class="text-white font-semibold">Sakthivel</span> — a passionate Full Stack Developer focused on building modern,
+            scalable and user-friendly web applications.
           </p>
+
           <p>
-            I specialize in building responsive frontend interfaces using Vue.js, Tailwind CSS,
-            Astro and integrating backend systems with Laravel & MySQL.
+            I specialize in frontend development using
+            <span class="text-indigo-300">Vue.js</span>,
+            <span class="text-indigo-300">Tailwind CSS</span> and
+            <span class="text-indigo-300">Bootstrap</span>,
+            while also developing secure backend systems with
+            <span class="text-indigo-300">Laravel</span> and
+            <span class="text-indigo-300">MySQL</span>.
           </p>
+
           <p>
             I enjoy transforming ideas into real-world products with clean UI,
-            optimized performance and user-friendly experiences.
+            optimized performance and maintainable code architecture.
           </p>
+
+          <p>
+            My goal is to continuously grow as a developer while contributing
+            to impactful digital products and modern web experiences.
+          </p>
+
         </div>
       </div>
 
       <!-- ── Stats Row ── -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
         {stats.map((s) => (
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-indigo-500/40 hover:bg-white/[0.07] hover:-translate-y-1 transition duration-300">
             <div class="flex justify-center mb-2">
               <ion-icon name={s.icon} style="font-size: 22px; color: #818cf8;"></ion-icon>
             </div>
@@ -97,7 +111,7 @@ const interests = [
       <!-- ── Currently section ── -->
       <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-14 hover:border-indigo-500/40 transition duration-300">
         <div class="flex items-center gap-2 mb-4">
-          <ion-icon name="flash-outline" style="font-size: 18px; color: #818cf8;"></ion-icon>
+          <ion-icon name="construct-outline" style="font-size: 18px; color: #818cf8;"></ion-icon>
           <h3 class="text-base font-semibold text-white">Currently</h3>
         </div>
         <div class="grid sm:grid-cols-3 gap-4">
@@ -107,7 +121,7 @@ const interests = [
             </div>
             <div>
               <p class="text-white text-sm font-medium">Working at</p>
-              <p class="text-gray-400 text-xs mt-0.5">Uzhavarbumi Agro Products</p>
+              <p class="text-gray-400 text-sm mt-0.5">Uzhavarbumi Agro Products Pvt Ltd</p>
             </div>
           </div>
           <div class="flex items-start gap-3">
@@ -116,7 +130,7 @@ const interests = [
             </div>
             <div>
               <p class="text-white text-sm font-medium">Building</p>
-              <p class="text-gray-400 text-xs mt-0.5">Full stack web projects</p>
+              <p class="text-gray-400 text-sm mt-0.5">Scalable business applications</p>
             </div>
           </div>
           <div class="flex items-start gap-3">
@@ -125,7 +139,7 @@ const interests = [
             </div>
             <div>
               <p class="text-white text-sm font-medium">Based in</p>
-              <p class="text-gray-400 text-xs mt-0.5">Chennai, Tamil Nadu</p>
+              <p class="text-gray-400 text-sm mt-0.5">Chennai, Tamil Nadu</p>
             </div>
           </div>
         </div>
@@ -167,6 +181,7 @@ const interests = [
                     <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-400 text-xs">{item.year}</span>
                   </div>
                   <p class="text-gray-400 text-sm mb-1">{item.school}</p>
+                  <p class="text-gray-500 text-xs mb-2">{item.name}</p>
                   <span class="inline-flex items-center gap-1.5 text-xs text-indigo-300">
                     <ion-icon name="ribbon-outline" style="font-size: 13px;"></ion-icon>
                     {item.score}
@@ -180,20 +195,20 @@ const interests = [
 
       <!-- ── CTA ── -->
       <div class="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8 text-center">
-        <h3 class="text-xl font-bold text-white mb-2">Let's Work Together</h3>
+        <h3 class="text-xl font-bold text-white mb-2">  Interested in Working Together?</h3>
         <p class="text-gray-400 text-sm mb-6 max-w-sm mx-auto">
-          I'm open to freelance projects, full-time roles and exciting collaborations.
+          Open to full-time opportunities, freelance projects and collaborative work..
         </p>
         <div class="flex flex-wrap justify-center gap-3">
           <a
-            href="#contact"
+            href="/#contact"
             class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/20"
           >
             <ion-icon name="mail-outline" style="font-size: 16px;"></ion-icon>
             Contact Me
           </a>
           <a
-            href="/projects"
+            href="/Allprojects"
             class="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm text-gray-300 hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200"
           >
             <ion-icon name="folder-outline" style="font-size: 16px;"></ion-icon>

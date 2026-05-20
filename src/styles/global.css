@@ -11,3 +11,7 @@ body {
 .title {
   @apply text-3xl font-bold mb-6;
 }
+
+html {
+  scroll-behavior: smooth;
+}
