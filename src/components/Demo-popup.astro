@@ -1,0 +1,83 @@
+---
+const {
+  id = "demo-modal",
+  title = "Demo Coming Soon",
+  description =
+    "The live demo for this project is currently under development and will be available soon.",
+} = Astro.props;
+---
+
+<div id={id} class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+  <div class="relative w-full max-w-sm rounded-3xl border border-white/10 bg-[#0f172a] p-7 text-center shadow-2xl animate-popup">
+    
+    <button id="close-popup" class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
+      <ion-icon name="close-outline" style="font-size:24px;"></ion-icon>
+    </button>
+
+    <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-indigo-500/10 flex items-center justify-center">
+      <ion-icon name="rocket-outline"style="font-size: 32px; color: #818cf8;"></ion-icon>
+    </div>
+
+    <h3 class="text-2xl font-bold text-white mb-3">{title}</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-6">  {description}</p>
+
+    <button class="close-demo-modal px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 transition duration-300 text-sm font-medium">
+      Okay
+    </button>
+  </div>
+</div>
+
+<style>
+  @keyframes popup {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-popup {
+    animation: popup 0.25s ease;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const modal = document.getElementById("demo-modal");
+    document.querySelectorAll(".demo-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        modal?.classList.remove("hidden");
+        modal?.classList.add("flex");
+      });
+    });
+    document.querySelectorAll(".close-demo-modal").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        modal?.classList.add("hidden");
+        modal?.classList.remove("flex");
+      });
+    });
+    document.getElementById("close-popup")?.addEventListener("click", () => {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+    });
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modal?.classList.add("hidden");
+        modal?.classList.remove("flex");
+      }
+    });
+
+  });
+</script>

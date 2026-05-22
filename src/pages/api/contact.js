@@ -1,18 +1,18 @@
-export const prerender = false; // ✅ Bug 1 fix — MUST be here
-
+export const prerender = false;
+ 
 export async function POST({ request }) {
   try {
     const { name, email, subject, message } = await request.json();
-
+ 
     if (!name || !email || !message) {
       return new Response(JSON.stringify({ success: false, error: "Missing fields" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" }, // ✅ Bug 4 fix
+        headers: { "Content-Type": "application/json" },
       });
     }
-
-    const webhookURL = import.meta.env.DISCORD_WEBHOOK_URL; // ✅ Bug 2 fix — check this exists
-
+ 
+    const webhookURL = import.meta.env.DISCORD_WEBHOOK_URL;
+ 
     if (!webhookURL) {
       console.error("DISCORD_WEBHOOK_URL is not set in .env");
       return new Response(JSON.stringify({ success: false, error: "Server config error" }), {
@@ -20,8 +20,8 @@ export async function POST({ request }) {
         headers: { "Content-Type": "application/json" },
       });
     }
-
-    const discordRes = await fetch(webhookURL, { // ✅ Bug 3 fix — check Discord response
+ 
+    const discordRes = await fetch(webhookURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -38,17 +38,17 @@ export async function POST({ request }) {
         }],
       }),
     });
-
+ 
     if (!discordRes.ok) {
-      console.error("Discord rejected the request:", discordRes.status);
+      console.error("Discord rejected:", discordRes.status);
       throw new Error("Discord error");
     }
-
+ 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-
+ 
   } catch (err) {
     console.error("Contact API error:", err);
     return new Response(JSON.stringify({ success: false }), {
@@ -57,3 +57,4 @@ export async function POST({ request }) {
     });
   }
 }
+ 

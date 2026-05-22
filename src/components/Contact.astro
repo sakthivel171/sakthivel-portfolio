@@ -150,7 +150,7 @@ const icons = [
       const data = await res.json();
 
      if (data.success) {
-        alert("Message sent successfully! 🚀");  // ← add this line
+        alert("Message sent successfully!");  
         if (btn) btn.textContent = "✅ Sent!";
         form.reset();
         setTimeout(() => { if (btn) btn.textContent = "Send Message →"; }, 3000);

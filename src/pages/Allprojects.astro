@@ -1,6 +1,7 @@
 ---
 
 import MainLayout from "@layouts/MainLayout.astro";
+import DemoPopup from "@components/Demo-popup.astro";
 
 const projects = [
     {
@@ -8,7 +9,7 @@ const projects = [
         desc: "A complete student management system",
         image: "/projects/project-sms.png",
         tech: ["Laravel", "MYSQL","Tailwind CSS"],
-        live: "#",
+        live: "",
         github: "https://github.com/sakthivel171/student_management-system",
         category: "Full Stack",
         status: "Completed",
@@ -38,7 +39,7 @@ const projects = [
         desc: "Uzhavarbumi website clone built with Vue.js and Tailwind CSS featuring responsive UI",
         image: "/projects/website.png",
         tech: ["Vue.js", "Javascript", "Tailwind CSS"],
-        live: "https://your-demo-link.com",
+        live: "",
         github: "",
         private: true,
         category: "Frontend",
@@ -59,7 +60,7 @@ const projects = [
         desc: " Customer web app inspired by Uzhavarbumi, developed using Vue.js, JavaScript, and Tailwind CSS with modern UI design and dynamic components.",
         image: "/projects/customer.png",
         tech: ["Vue", "Javascript", "Tailwind CSS"],
-        live: "https://your-demo-link.com",
+        live: "",
         github: "",
         private: true,
         category: "Frontend",
@@ -75,7 +76,7 @@ const stats = [
 
 const categories = [ "All", ... new Set(projects.map((p) => p.category))];
 ---
-
+<DemoPopup/>
 <MainLayout>
     <section id="allprojects" class="relative min-h-screen overflow-hidden bg-[#050816] text-white px-4 sm:px-6 lg:px-8 pb-24">
         <div class="absolute top-0 left-0 w-96 h-96 bg-indigo-500/10 blur-[160px] rounded-full pointer-events-none"></div>
@@ -129,15 +130,15 @@ const categories = [ "All", ... new Set(projects.map((p) => p.category))];
                                 </div>
                             )}
 
-                            <div class:list={["absolute top-3 right-3 flex items-center gap-1.5   px-3 py-1 rounded-full text-[11px] font-medium border",
+                            {/* <div class:list={["absolute top-3 right-3 flex items-center gap-1.5   px-3 py-1 rounded-full text-[11px] font-medium border",
                                 project.status === "Live"? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
                                 : "bg-indigo-500/10 border-indigo-500/20 text-indigo-300"
                             ]}>
                                 <span class:list={["w-1.5 h-1.5 rounded-full", project.status === "Live"? "bg-emerald-400 animate-pulse" : "bg-indigo-400"]}></span>
                                 {project.status}
-                            </div>
+                            </div> */}
 
-                            <div class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm border border-white/10 text-gray-300 text-[11px] font-medium">{project.category}</div>
+                            {/* <div class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-sm border border-white/10 text-gray-300 text-[11px] font-medium">{project.category}</div> */}
 
                         </div>
 
@@ -165,10 +166,19 @@ const categories = [ "All", ... new Set(projects.map((p) => p.category))];
                                         Github
                                     </a>
                                 )}
-                                <a href={project.live} target="_blank"  rel="noopener noreferrer"  class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
-                                    <ion-icon name="open-outline" style="font-size:15px;"></ion-icon>
-                                    Live Demo
-                                </a>
+                               {
+                                project.live ? (
+                                    <a href={project.live} target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
+                                        <ion-icon name="open-outline" style="font-size:15px;"></ion-icon>
+                                        Live Demo
+                                    </a>
+                                ) : (
+                                    <button  class="demo-btn flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
+                                        <ion-icon name="rocket-outline" style="font-size:15px;"></ion-icon>
+                                        Live Demo
+                                    </button>
+                                )
+                               }
                             </div>
                         </div>
                     </div>
