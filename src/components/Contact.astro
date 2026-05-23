@@ -14,7 +14,7 @@ const icons = [
 
   {
     icon: "mail-outline",
-    link: "#",
+    link: "mailto:sakthiveln.tech@gmail.com",
     name: "Gmail",
   },
 
@@ -110,62 +110,144 @@ const icons = [
           <p class="text-gray-400 text-sm"> Fill out the form below and I'll get back to you soon. </p>
         </div>
 
-        <input id="name" type="text" placeholder="Enter Your Name" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300" required/>
+        <div>
+          <input id="name" type="text" placeholder="Enter Your Name" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
+          <p id="name-error" class="text-red-400 text-sm mt-2 hidden"></p>
+        </div>
 
-        <input id="email" type="email" placeholder="Enter Your Email" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300" required/>
+        <div>
+          <input id="email" type="email" placeholder="Enter Your Email" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
+          <p id="email-error" class="text-red-400 text-sm mt-2 hidden"></p>
+        </div>
 
         <input id="subject" type="text" placeholder="Subject" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
 
-        <textarea id="message" rows="5" placeholder="Write Your Message..." class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300 resize-none" required></textarea>
-
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 transition duration-300 text-white font-semibold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
-          Send Message →
-        </button>
+        <div>
+          <textarea id="message" rows="5" placeholder="Write Your Message..." class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300 resize-none"></textarea>
+         <p id="message-error" class="text-red-400 text-sm mt-2 hidden"></p>
+        </div>
+        
+        <div>
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 transition duration-300 text-white font-semibold shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5">
+            Send Message →
+          </button>
+        </div>
       </form>
     </div>
   </div>
 </section>
 
-<script>
+<script is:inline>
+
   const form = document.getElementById("contact-form");
-  const btn  = form?.querySelector("button[type='submit']");
+  const btn = form?.querySelector("button[type='submit']");
+
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const messageInput = document.getElementById("message");
+
+  const nameError = document.getElementById("name-error");
+  const emailError = document.getElementById("email-error");
+  const messageError = document.getElementById("message-error");
+
+  function showError(element, message) {
+    element.textContent = message;
+    element.classList.remove("hidden");
+  }
+
+  function hideError(element) {
+    element.textContent = "";
+    element.classList.add("hidden");
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 
   form?.addEventListener("submit", async (e) => {
+
     e.preventDefault();
 
-    const name    = document.getElementById("name").value.trim();
-    const email   = document.getElementById("email").value.trim();
-    const subject = document.getElementById("subject").value.trim();
-    const message = document.getElementById("message").value.trim();
+    let valid = true;
 
-    if (!name || !email || !message) {
-      alert("Please fill in name, email, and message.");
-      return;
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+    const subject = document.getElementById("subject").value.trim();
+
+    hideError(nameError);
+    hideError(emailError);
+    hideError(messageError);
+
+    // NAME
+    if (!name) {
+      showError(nameError, "Name field is required");
+      valid = false;
     }
 
-    if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+    // EMAIL
+    if (!email) {
+      showError(emailError, "Email is required");
+      valid = false;
+    } else if (!validateEmail(email)) {
+      showError(emailError, "Enter valid email address");
+      valid = false;
+    }
+
+    // MESSAGE
+    if (!message) {
+      showError(messageError, "Message field is required");
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+    }
 
     try {
-      const res  = await fetch("/api/contact", {
-        method : "POST",
-        headers: { "Content-Type": "application/json" },
-        body   : JSON.stringify({ name, email, subject, message }),
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name, email, subject, message
+        })
       });
 
       const data = await res.json();
 
-     if (data.success) {
-        alert("Message sent successfully!");  
-        if (btn) btn.textContent = "✅ Sent!";
+      if (data.success) {
+        alert("Message sent successfully!");
         form.reset();
-        setTimeout(() => { if (btn) btn.textContent = "Send Message →"; }, 3000);
-      }else {
-        alert("Failed to send. Please try again.");
+
+        if (btn) {
+          btn.textContent = "✅ Sent!";
+        }
+
+        setTimeout(() => {
+          if (btn) {
+            btn.textContent = "Send Message →";
+          }
+        }, 3000);
+
+      } else {
+        alert("Failed to send message.");
       }
-    } catch {
-      alert("Something went wrong. Check your connection.");
+
+    } catch (error) {
+
+      alert("Something went wrong.");
+
     } finally {
-      if (btn) btn.disabled = false;
+
+      if (btn) {
+        btn.disabled = false;
+      }
     }
   });
 </script>

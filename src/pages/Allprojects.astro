@@ -6,8 +6,8 @@ import DemoPopup from "@components/Demo-popup.astro";
 const projects = [
     {
         title: "Student Management System",
-        desc: "A complete student management system",
-        image: "/projects/project-sms.png",
+        desc: "A full-featured student management platform with attendance tracking, academic records, authentication, and admin dashboard.",
+        image: "/projects/sms.png",
         tech: ["Laravel", "MYSQL","Tailwind CSS"],
         live: "",
         github: "https://github.com/sakthivel171/student_management-system",
@@ -15,7 +15,7 @@ const projects = [
         status: "Completed",
     },
     {
-        title: "Portfolio Website",
+        title: "Developar Portfolio",
         desc: " Personal developer Portfolio built with Astro and Tailwind CSS",
         image: "/projects/portfolio.png",
         tech: ["Astro","Tailwind CSS", "Javascript"],
@@ -23,10 +23,11 @@ const projects = [
         github: "https://github.com/sakthivel171/sakthivel-portfolio",
         category: "Frontend",
         status: "Completed",
+        hideDemo: true,
     },
     {
-        title: "CRUD Operation",
-        desc: "A complete student management system",
+        title: "Record Management System (CRUD)",
+        desc: "A dynamic CRUD application developed using PHP and MySQL for managing data operations with responsive UI design.",
         image: "/projects/crud.png",
         tech: ["PHP","Tailwind CSS", "MYSQL"],
         live: "",
@@ -46,7 +47,7 @@ const projects = [
         status: "Completed",
     },
     {
-        title: "Basic Calculator",
+        title: "Interactive Calculator App",
         desc: "A clean and responsive calculator application built using HTML, CSS, and JavaScript for performing basic arithmetic operations.",
         image: "/projects/calculator.png",
         tech: ["HTML","CSS", "Javascript"],
@@ -120,7 +121,7 @@ const categories = [ "All", ... new Set(projects.map((p) => p.category))];
                     <div class="project-card group flex flex-col bg-white/5 border  border-white/10 rounded-2xl overflow-hidden hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300" data-category={project.category}>
                         <div class="relative h-52 overflow-hidden bg-[#0f172a] flex items-center justify-center">
                             {project.image ? (
-                                <img src={project.image} alt={project.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-500"/>
+                                <img src={project.image} alt={project.title} class="w-full h-full object-fill group-hover:scale-105 transition duration-500 "/>
                             ):(
                                 <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#0f172a] to-[#1e1b4b] gap-3">
                                     <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
@@ -167,17 +168,19 @@ const categories = [ "All", ... new Set(projects.map((p) => p.category))];
                                     </a>
                                 )}
                                {
-                                project.live ? (
-                                    <a href={project.live} target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
-                                        <ion-icon name="open-outline" style="font-size:15px;"></ion-icon>
-                                        Live Demo
-                                    </a>
-                                ) : (
-                                    <button  class="demo-btn flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
-                                        <ion-icon name="rocket-outline" style="font-size:15px;"></ion-icon>
-                                        Live Demo
-                                    </button>
-                                )
+                                    !project.hideDemo && (
+                                      project.live ? (
+                                          <a href={project.live} target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
+                                              <ion-icon name="open-outline" style="font-size:15px;"></ion-icon>
+                                              Live Demo
+                                          </a>
+                                      ) : (
+                                          <button  class="demo-btn flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
+                                              <ion-icon name="rocket-outline" style="font-size:15px;"></ion-icon>
+                                              Live Demo
+                                          </button>
+                                      )
+                                    )
                                }
                             </div>
                         </div>
