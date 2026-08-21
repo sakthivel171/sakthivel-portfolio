@@ -116,6 +116,11 @@ const icons = [
         </div>
 
         <div>
+          <input id="phone" type="number" placeholder="Enter Contact Number" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
+          <p id="phone-error" class="text-red-400 text-sm  hidden"></p>
+        </div>
+
+        <div>
           <input id="email" type="email" placeholder="Enter Your Email" class="w-full py-3.5 px-5 rounded-xl bg-[#0f172a]/80 border border-white/10 text-white placeholder-gray-500 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition duration-300"/>
           <p id="email-error" class="text-red-400 text-sm hidden"></p>
         </div>
@@ -143,10 +148,12 @@ const icons = [
   const btn = form?.querySelector("button[type='submit']");
 
   const nameInput = document.getElementById("name");
+  const phoneInput = document.getElementById("phone");
   const emailInput = document.getElementById("email");
   const messageInput = document.getElementById("message");
 
   const nameError = document.getElementById("name-error");
+  const phoneError = document.getElementById("phone-error");
   const emailError = document.getElementById("email-error");
   const messageError = document.getElementById("message-error");
 
@@ -171,17 +178,24 @@ const icons = [
     let valid = true;
 
     const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
     const email = emailInput.value.trim();
     const message = messageInput.value.trim();
     const subject = document.getElementById("subject").value.trim();
 
     hideError(nameError);
+    hideError(phoneError);
     hideError(emailError);
     hideError(messageError);
 
     // NAME
     if (!name) {
       showError(nameError, "Name field is required");
+      valid = false;
+    }
+
+    if (!phone) {
+      showError(phoneError, "Contact number is required");
       valid = false;
     }
 
@@ -215,7 +229,7 @@ const icons = [
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          name, email, subject, message
+          name,phone, email, subject, message
         })
       });
 

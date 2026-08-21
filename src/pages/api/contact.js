@@ -2,9 +2,9 @@ export const prerender = false;
  
 export async function POST({ request }) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const { name, phone, email, subject, message } = await request.json();
  
-    if (!name || !email || !message) {
+  if (!name ||!phone || !email || !message) {
       return new Response(JSON.stringify({ success: false, error: "Missing fields" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
@@ -29,8 +29,9 @@ export async function POST({ request }) {
           title: "📩 New Contact Message",
           color: 0x6366f1,
           fields: [
-            { name: "Name",    value: name },
-            { name: "Email",   value: email },
+            { name: "Name", value: name },
+            {name:"contact", value: phone},
+            { name: "Email", value: email },
             { name: "Subject", value: subject || "—" },
             { name: "Message", value: message },
           ],
