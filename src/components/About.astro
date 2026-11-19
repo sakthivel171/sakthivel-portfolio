@@ -4,17 +4,19 @@ const features = [
   "Full Stack Web Development",
   "Responsive UI/UX Design",
   "REST API Integration",
-  "Scalable Backend Systems"
+  "Scalable Backend Systems",
+  "SEO Optimization",
+  "Hosting & Deployment"
 ]
 
 ---
 
 <section id="about" class="relative overflow-hidden  bg-[#050816] text-white py-10 px-4 sm:px-6 lg:px-8 scroll-mt-15">
-  <div class="absolute top-0 left-0 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full"></div>
-  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full"></div>
+  <div class="absolute top-0 left-0 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full animate-blob"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full animate-blob-slow"></div>
 
   <div class="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-    <div>
+    <div data-stagger="120" data-stagger-type="left">
       <div class="flex items-center gap-3 mb-5">
         <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
           <ion-icon name="code-slash-outline" style="font-size: 22px; color: white;"></ion-icon>
@@ -33,26 +35,26 @@ const features = [
         I'm <span class="text-white font-semibold">Sakthivel</span>, a passionate Full Stack Developer focused on creating modern, scalable and user-friendly web applications with clean UI/UX and efficient backend architecture using Vue.js, Laravel and Tailwind CSS.
       </p>
 
-      <div class="grid sm:grid-cols-2 gap-3 mb-8">
+      <div class="grid sm:grid-cols-2 gap-3 mb-8" data-stagger="100" data-stagger-base="300" data-stagger-type="zoom">
         {features.map((item) => (
-          <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3  hover:border-indigo-500/30 hover:-translate-y-0.5 transition duration-300 ">
+          <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3  hover:border-indigo-500/30 hover:bg-indigo-500/10 hover:-translate-y-1 transition duration-300 ">
             <ion-icon name="checkmark-circle-outline" style="font-size: 18px; color: #818cf8; flex-shrink: 0;"></ion-icon>
             <p class="text-gray-300 text-sm font-medium">{item}</p>
           </div>
         ))}
       </div>
-      <a href="/about-more" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/40">Read More   →</a>
+      <a href="/about-more" class="btn-shine inline-block px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/40">Read More   →</a>
     </div>
 
-    <div class="relative flex justify-center">
+    <div class="relative flex justify-center" data-reveal="right" style="--delay: 200ms">
       <div class="relative w-full max-w-sm">
-        <div class="absolute inset-0 bg-indigo-500/20 blur-[80px] rounded-full"></div>
+        <div class="absolute inset-0 bg-indigo-500/20 blur-[80px] rounded-full animate-glow"></div>
 
-        <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[28px] p-7 shadow-2xl">
+        <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[28px] p-7 shadow-2xl hover:-translate-y-1.5 hover:border-indigo-500/30 hover:shadow-indigo-500/20 transition duration-500">
           <div class="flex items-center justify-between mb-5">
             <div>
               <p class="text-gray-300 text-sm mb-1">Experience</p>
-              <h3 class="text-4xl font-bold text-indigo-400">1+</h3>
+              <h3 class="text-4xl font-bold text-indigo-400" data-counter>1+</h3>
               <p class="text-gray-400 text-xs">Years Working</p>
             </div>
             
@@ -63,12 +65,12 @@ const features = [
 
           <div class="grid grid-cols-2 gap-3 mb-4">
             <div class="bg-[#0F172A] border border-white/10 rounded-2xl p-4 text-center">
-              <h4 class="text-2xl font-bold text-purple-400 mb-0.5">10+</h4>
+              <h4 class="text-2xl font-bold text-purple-400 mb-0.5" data-counter>10+</h4>
               <p class="text-gray-400 text-xs">Projects</p>
             </div>
 
              <div class="bg-[#0F172A] border border-white/10 rounded-2xl p-4 text-center">
-              <h4 class="text-2xl font-bold text-purple-400 mb-0.5">5+</h4>
+              <h4 class="text-2xl font-bold text-purple-400 mb-0.5" data-counter>5+</h4>
               <p class="text-gray-400 text-xs">Technologies</p>
             </div>
           </div>

@@ -2,6 +2,15 @@
 import DemoPopup from "./Demo-popup.astro";
 const projects = [
 {
+  title: "TG Acoustics Engineering",
+  desc: "Live client website for an industrial noise control manufacturer, showcasing silencers, acoustic enclosures, services and industries served with a modern responsive UI.",
+  image: "/projects/tgacoustics.png",
+  tech: ["Astro", "Tailwind CSS", "Javascript"],
+  live: "https://tgacousticsengg.com/",
+  github: "",
+  client: true,
+},
+{
   title: "Student Management System",
   desc: "A full-featured student management platform with attendance tracking, academic records, authentication, and admin dashboard.",
   image: "/projects/sms.png",
@@ -16,14 +25,6 @@ const projects = [
   tech: ["Astro","Tailwind CSS", "Javascript"],
   live: "https://sakthiveln.vercel.app/",
   github: "https://github.com/sakthivel171/sakthivel-portfolio",
-},
-{
-  title: "Record Management System (CRUD)",
-  desc: "A dynamic CRUD application developed using PHP and MySQL for managing data operations with responsive UI design.",
-  image: "/projects/crud.png",
-  tech: ["PHP","Tailwind CSS", "MYSQL"],
-  live: "",
-  github: "https://github.com/sakthivel171/CRUD_operation",
 },
 // {
 //   title: "Simple Calculator",
@@ -40,17 +41,18 @@ const projects = [
 <section id="projects" class="relative overflow-hidden bg-[#050816] text-white py-10 px-4 sm:px-6 lg:px-8 lg:py-10 scroll-mt-15">
 
   <div class="relative max-w-6xl mx-auto">
-    <div class="text-center mb-4">
+    <div class="text-center mb-8" data-reveal="blur">
       <p class="text-indigo-400 uppercase tracking-[4px] text-sm mb-3">What I've Built</p>
       <h2 class="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
       <p class="text-gray-400 text-sm max-w-md mx-auto leading-relaxed">A selection of real-world projects I've designed and developed from scratch.</p>
     </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10" data-stagger="150">
       {projects.map((project) => (
-        <div class="group flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300">
+        <div class="group flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-indigo-500/40 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/15 transition duration-300">
           <div class="relative h-48 overflow-hidden bg-[#0f172a]">
-            <img src={project.image} alt={project.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-500"/>
+            <img src={project.image} alt={project.title} class:list={["w-full h-full object-cover group-hover:scale-110 transition duration-700", project.client && "object-top"]}/>
+
 
             <div class="fallback-icon absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none">
               <ion-icon name="code-slash-outline" style="font-size: 48px; color: #4f46e5; opacity: 0.4;"></ion-icon>
@@ -69,16 +71,23 @@ const projects = [
             </div>
 
             <div class="flex gap-3 mt-3">
-              <a href={project.github} target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
-                <ion-icon name="logo-github" style="font-size: 16px;"></ion-icon>
-                GitHub
-              </a>
+              {project.github ? (
+                <a href={project.github} target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm font-medium hover:border-indigo-400/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
+                  <ion-icon name="logo-github" style="font-size: 16px;"></ion-icon>
+                  GitHub
+                </a>
+              ) : (
+                <span class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 text-sm font-medium">
+                  <ion-icon name="briefcase-outline" style="font-size: 16px;"></ion-icon>
+                  Client Project
+                </span>
+              )}
 
               {
                 project.live ? (
                   <a href={project.live} target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-2 px-4 py-2  rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
                     <ion-icon name="open-outline" style="font-size:15px;"></ion-icon>
-                      Live Demo
+                      {project.client ? "Visit Website" : "Live Demo"}
                     </a>
                     ) : (
                     <button  class="demo-btn flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:shadow-lg hover:shadow-indigo-500/20 transition duration-200">
@@ -93,8 +102,8 @@ const projects = [
       ))}
     </div>
 
-    <div class="flex justify-center">
-      <a href="/Allprojects" class="flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 transition duration-300">
+    <div class="flex justify-center" data-reveal="up">
+      <a href="/Allprojects" class="btn-shine flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/20 transition duration-300">
         View All Projects
         <ion-icon name="arrow-forward-outline" style="font-size: 16px;"></ion-icon>
       </a>

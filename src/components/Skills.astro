@@ -9,6 +9,8 @@ const skills = [
       {name: "Bootstrap", icon: "/skill/bootstrap.png"},
       {name: "Javascript", icon: "/skill/js.png"},
       {name: "vue.js", icon: "/skill/vue.png"},
+      {name: "SEO", icon: "/skill/seo.svg"},
+      {name: "Apps Script", icon: "/skill/appscript.svg"},
     ],
   },
   {
@@ -19,18 +21,20 @@ const skills = [
       {name: "Laravel", icon: "/skill/laravel.png"},
       {name: "REST APIs", icon: "/skill/api.png"},
       {name: "MYSQL", icon: "/skill/mysql.png"},
-      {name: "Livewire",icon: "/skill/livewire.png"}
+      {name: "Livewire",icon: "/skill/livewire.png"},
     ]
   },
   {
-    title: "Tools & Cloud",
+    title: "Tools & Deployment",
     icon: "construct-outline",
     items: [
       {name: "Git & Github", icon: "/skill/git.png"},
       {name: "Vs Code", icon: "/skill/vscode.png"},
+      {name: "Postman", icon: "/skill/postman.png"},
       {name:"Vercel",icon: "/skill/vercel.png"},
+      {name: "Hostinger", icon: "/skill/hostinger.svg"},
+      {name: "Cloudflare", icon: "/skill/cloudflare.svg"},
       {name: "AWS", icon: "/skill/aws.png"},
-      {name: "Postman", icon: "/skill/postman.png"}
     ],
   },
 ];
@@ -39,12 +43,12 @@ const skills = [
 
 <section id="skills" class="relative overflow-hidden py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#020617] via-[#020617] to-[#0f172a] text-white scroll-mt-15">
 
-  <div class="absolute top-0 left-0 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full"></div>
+  <div class="absolute top-0 left-0 w-72 h-72 bg-indigo-500/20 blur-[120px] rounded-full animate-blob"></div>
 
-  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full animate-blob-slow"></div>
 
   <div class="relative max-w-7xl mx-auto">
-    <div class="text-center mb-14">
+    <div class="text-center mb-14" data-reveal="blur">
       <p class="text-indigo-400 uppercase tracking-[4px] text-sm mb-3">My Expertise</p>
       <h2 class="text-3xl md:text-5xl font-bold mb-4">Skills &
         <span class="bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text">Technologies</span>
@@ -52,12 +56,12 @@ const skills = [
       </h2>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-stagger="150" data-stagger-type="zoom">
       {skills.map((category) => (
-        <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 hover:border-indigo-500/40 hover:bg-white/[0.07] transition-all duration-300 hover:-translate-y-1">
+        <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 hover:border-indigo-500/40 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-2">
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-indigo-500/10 to-purple-500/10"></div>
           <div class="relative flex items-center gap-4 mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:rotate-6 group-hover:scale-110 transition-transform duration-500">
               <ion-icon name={category.icon} style="font-size: 26px; color: white;"></ion-icon>
             </div>
             <div>
@@ -68,8 +72,8 @@ const skills = [
 
           <div class="flex flex-wrap gap-3">
             {category.items.map((item) => (
-              <div class="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0f172a]/80 border border-white/10 hover:border-indigo-500/40 hover:bg-indigo-500/10 transition duration-300">
-                <img src={item.icon} alt={item.name} class="w-5 h-5 object-contain"/>
+              <div class="group/chip flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0f172a]/80 border border-white/10 hover:border-indigo-500/40 hover:bg-indigo-500/10 hover:-translate-y-0.5 transition duration-300">
+                <img src={item.icon} alt={item.name} class="w-5 h-5 object-contain group-hover/chip:scale-125 group-hover/chip:-rotate-12 transition-transform duration-300"/>
                 <span class="text-sm text-gray-300">{item.name}</span>
               </div>
             ))}

@@ -8,11 +8,11 @@ const navLinks = [
 ];
 
 ---
-<nav class="fixed top-0 left-0 w-full z-50 bg-[#050816]/80 backdrop-blur-lg border-b border-white/10" >
+<nav id="main-nav" data-reveal="down" class="fixed top-0 left-0 w-full z-50 bg-[#050816]/80 backdrop-blur-lg border-b border-white/10" >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="h-20 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-r from-indigo-400 to-indigo-600 flex items-center justify-center font-bold text-white text-sm md:text-lg">SK</div>
+        <div class="w-11 h-11 rounded-xl hover:rotate-6 hover:scale-110 transition-transform duration-300 bg-gradient-to-r from-indigo-400 to-indigo-600 flex items-center justify-center font-bold text-white text-sm md:text-lg">SK</div>
         <div class="hidden sm:block">
           <h1 class="text-white font-bold text-xl leading-none">SAKTHIVEL</h1>
           <p class="text-gray-400 text-sm">Full Stack Developer</p>
@@ -29,7 +29,7 @@ const navLinks = [
       </div>
   
       <div class="flex items-center gap-3">
-       <a href="/resume/Sakthivel_N_Resume.pdf" download target="_blank"class="hidden md:flex px-6 py-2 justify-center items-center rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/30">
+       <a href="/resume/Sakthivel_N_Resume.pdf" download target="_blank"class="btn-shine hidden md:flex px-6 py-2 justify-center items-center rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/30">
          <ion-icon name="download-outline" class=" pr-1 text-lg"></ion-icon>
         Resume</a>
         <button id="menu-btn" class="md:hidden text-white hover:text-indigo-400 transition-all duration-300">
@@ -75,29 +75,41 @@ const navLinks = [
 
     const desktopLinks = document.querySelectorAll(".nav-link");
 
-    desktopLinks.forEach((link) => {
-      link.addEventListener("click", () => {
+    function setActive(activeLink) {
+      desktopLinks.forEach((nav) => {
+        const isActive = nav === activeLink;
+        nav.classList.toggle("text-white", isActive);
+        nav.classList.toggle("text-gray-400", !isActive);
 
-        desktopLinks.forEach((nav) => {
-
-          nav.classList.remove("text-white");
-          nav.classList.add("text-gray-400");
-
-          const line = nav.querySelector("span");
-
-          line?.classList.remove("w-full");
-          line?.classList.add("w-0");
-        });
-
-        link.classList.remove("text-gray-400");
-        link.classList.add("text-white");
-
-        const activeLine = link.querySelector("span");
-
-        activeLine?.classList.remove("w-0");
-        activeLine?.classList.add("w-full");
+        const line = nav.querySelector("span");
+        line?.classList.toggle("w-full", isActive);
+        line?.classList.toggle("w-0", !isActive);
       });
+    }
+
+    desktopLinks.forEach((link) => {
+      link.addEventListener("click", () => setActive(link));
     });
+
+    // Highlight the nav link of the section currently in view
+    const sections = Array.from(desktopLinks)
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    if ("IntersectionObserver" in window && sections.length) {
+      const spy = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+            if (link) setActive(link);
+          });
+        },
+        { rootMargin: "-45% 0px -50% 0px" }
+      );
+
+      sections.forEach((section) => spy.observe(section));
+    }
 
   });
 </script>

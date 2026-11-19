@@ -20,3 +20,222 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* ==========================================================================
+   Scroll reveal animations
+   Usage:
+     data-reveal="up | down | left | right | zoom | fade | blur | line"
+     style="--delay: 200ms"         (optional delay)
+     data-stagger="100" on a parent  (auto-staggers direct children)
+   The "js" class is added in <head>, so without JS everything stays visible.
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+}
+
+.js [data-reveal].is-visible {
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: var(--delay, 0ms);
+  animation-fill-mode: both;
+  animation-name: reveal-up;
+}
+
+.js [data-reveal="down"].is-visible  { animation-name: reveal-down; }
+.js [data-reveal="left"].is-visible  { animation-name: reveal-left; }
+.js [data-reveal="right"].is-visible { animation-name: reveal-right; }
+.js [data-reveal="zoom"].is-visible  { animation-name: reveal-zoom; }
+.js [data-reveal="fade"].is-visible  { animation-name: reveal-fade; }
+.js [data-reveal="blur"].is-visible  { animation-name: reveal-blur; }
+.js [data-reveal="line"].is-visible  {
+  animation-name: reveal-line;
+  animation-duration: 1.6s;
+  transform-origin: top;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translate3d(0, 40px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-down {
+  from { opacity: 0; transform: translate3d(0, -30px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-left {
+  from { opacity: 0; transform: translate3d(-50px, 0, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-right {
+  from { opacity: 0; transform: translate3d(50px, 0, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-zoom {
+  from { opacity: 0; transform: scale(0.88) translate3d(0, 20px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes reveal-blur {
+  from { opacity: 0; filter: blur(12px); transform: translate3d(0, 20px, 0); }
+  to   { opacity: 1; filter: blur(0); transform: none; }
+}
+
+@keyframes reveal-line {
+  from { opacity: 0; transform: scaleY(0); }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+
+/* ==========================================================================
+   Ambient / decorative animations
+   ========================================================================== */
+
+/* Floating element (hero image) */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+
+/* Soft drifting glow blobs */
+.animate-blob {
+  animation: blob 14s ease-in-out infinite;
+}
+
+.animate-blob-slow {
+  animation: blob 20s ease-in-out infinite reverse;
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -30px) scale(1.12); }
+  66%      { transform: translate(-30px, 25px) scale(0.92); }
+}
+
+/* Pulsing glow behind hero image */
+.animate-glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.45; transform: scale(0.95); }
+  50%      { opacity: 0.85; transform: scale(1.05); }
+}
+
+/* Slowly rotating ring */
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+/* Shine sweep across buttons on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
+/* ==========================================================================
+   Typewriter caret (hero role text)
+   ========================================================================== */
+
+.typing-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  margin-left: 4px;
+  vertical-align: -0.15em;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #818cf8, #a855f7);
+  animation: caret-blink 0.9s step-end infinite;
+}
+
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ==========================================================================
+   Navbar state, back-to-top
+   ========================================================================== */
+
+#main-nav {
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+#main-nav.nav-scrolled {
+  background-color: rgba(5, 8, 22, 0.95);
+  box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.35);
+}
+
+#back-to-top {
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+#back-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -6px rgba(139, 92, 246, 0.6);
+}
+
+/* Project filter re-animation (All Projects page) */
+.card-pop {
+  animation: reveal-zoom 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) both;
+}
+
+/* ==========================================================================
+   Respect users who prefer reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    opacity: 1 !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -16,7 +16,13 @@ const stats = [
     value: "Vue • Laravel",
   },
 ]
-  
+
+// Roles shown one by one in the hero typing animation
+const roles = [
+  "Full Stack Developer",
+  "Software Engineer",
+  "Laravel Developer",
+];
 ---
 
 <section id="home" class="relative overflow-hidden bg-[#050816] text-white flex items-center pt-14 md:pt-10 lg:pt-20 scroll-mt-15">
@@ -25,23 +31,25 @@ const stats = [
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(139,92,246,0.18),transparent_30%)]"></div>
   <div class="absolute inset-0 bg-gradient-to-r from-black via-[#050816] to-black"></div>
 
-  <div class="absolute top-20 left-10 w-40 h-40 bg-indigo-500/20 blur-[100px] rounded-full"></div>
-  <div class="absolute bottom-20 right-10 w-52 h-52 bg-purple-500/20 blur-[120px] rounded-full"></div>
+  <div class="absolute top-20 left-10 w-40 h-40 bg-indigo-500/20 blur-[100px] rounded-full animate-blob"></div>
+  <div class="absolute bottom-20 right-10 w-52 h-52 bg-purple-500/20 blur-[120px] rounded-full animate-blob-slow"></div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:py-16 w-full">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-      <div class="order-2 sm:order-2 md:order-1">
+      <div class="order-2 sm:order-2 md:order-1" data-stagger="130" data-stagger-base="250">
         <p class="text-indigo-400 text-lg tracking-wide mb-2">Hello, I'm</p>
         <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">Sakthivel N</h1>
-        <h2 class="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text mb-6">Full Stack Web Developer</h2>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6 min-h-[1.5em] whitespace-nowrap" aria-label={roles.join(", ")}>
+          <span id="typed-role" class="bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text" aria-hidden="true">{roles[0]}</span><span class="typing-caret" aria-hidden="true"></span>
+        </h2>
         <p class="text-gray-300/80 text-base lg:text-lg leading-relaxed max-w-xl mb-8">I build modern, scalable and high-performance web applications using
           Vue.js, Laravel and Tailwind CSS with clean UI/UX and optimized backend architecture.
         </p>
         
 
         <div class="flex flex-row gap-4 mt-8 mb-10">
-          <a href="/resume/Sakthivel_N_Resume.pdf" target="_blank"class="px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/30">View Resume</a>
-          <a href="#contact" class="px-8 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-indigo-400 hover:bg-indigo-500/10 transition">Contact Me</a>
+          <a href="/resume/Sakthivel_N_Resume.pdf" target="_blank"class="btn-shine px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/30">View Resume</a>
+          <a href="#contact" class="px-8 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-indigo-400 hover:bg-indigo-500/10 hover:-translate-y-0.5 transition duration-300">Contact Me</a>
         </div>
 
         <!-- <div class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -55,9 +63,61 @@ const stats = [
         </div> -->
       </div>
 
-      <div class="order-1 sm:order-1 md:order-2 flex justify-center items-center">
-        <img src="/images/logo.png" alt="sakthivel" class="w-[320px] md:w-[380px] lg:w-[430px] h-[320px] sm:h-[380px] md:h-[450px] lg:h-[500px] object-cover">
+      <div class="order-1 sm:order-1 md:order-2 flex justify-center items-center" data-reveal="zoom" style="--delay: 150ms">
+        <div class="relative">
+          <!-- Soft glow + rotating ring behind the image -->
+          <div class="absolute inset-[12%] rounded-full bg-gradient-to-br from-indigo-500/40 to-purple-600/40 blur-[70px] animate-glow" aria-hidden="true"></div>
+          <div class="absolute inset-[8%] rounded-full border border-dashed border-indigo-400/20 animate-spin-slow" aria-hidden="true"></div>
+
+          <img src="/images/logo.png" alt="sakthivel" class="relative animate-float w-[320px] md:w-[380px] lg:w-[430px] h-[320px] sm:h-[380px] md:h-[450px] lg:h-[500px] object-cover">
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Typewriter: types each role letter by letter, then erases it (right to left) and moves to the next
+  const el = document.getElementById("typed-role");
+  const roles = (el?.closest("h2")?.getAttribute("aria-label") || "").split(", ").filter(Boolean);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (el && roles.length && !reduceMotion) {
+    const TYPE_SPEED = 85;     // ms per letter while typing
+    const DELETE_SPEED = 45;   // ms per letter while erasing
+    const HOLD_TIME = 1800;    // pause when a word is fully typed
+    const NEXT_DELAY = 400;    // pause before typing the next word
+
+    let roleIndex = 0;
+    let charIndex = roles[0].length; // first role is already shown on load
+    let deleting = true;
+
+    const tick = () => {
+      const current = roles[roleIndex];
+
+      if (deleting) {
+        charIndex--;
+        el.textContent = current.slice(0, charIndex);
+
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          return setTimeout(tick, NEXT_DELAY);
+        }
+        return setTimeout(tick, DELETE_SPEED);
+      }
+
+      charIndex++;
+      el.textContent = current.slice(0, charIndex);
+
+      if (charIndex === current.length) {
+        deleting = true;
+        return setTimeout(tick, HOLD_TIME);
+      }
+      setTimeout(tick, TYPE_SPEED);
+    };
+
+    // Let the hero entrance finish, then start cycling
+    setTimeout(tick, 2600);
+  }
+</script>

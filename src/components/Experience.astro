@@ -7,17 +7,28 @@ const experience = [
     icon: "briefcase-outline",
     current: true,
     points: [
-      "Developed Customer, Dealer and Delivery Apps for business operations.",
-      "Built responsive dashboards using Vue.js and Tailwind CSS.",
-      "Integrated REST APIs for seamless frontend-backend communication.",
-      "Created reusable components and optimized app performance.",
+      "Worked across the company's complete product ecosystem — Admin Panel, Employee App, Delivery Partner App, Dealer App, Customer App and the official website.",
+      "Primarily focused on backend development with Laravel and MySQL — building business logic, database queries and REST APIs that power every app.",
+      "Built and integrated REST APIs consumed by the Vue.js frontends for smooth, real-time data flow between all apps.",
+      "Developed responsive UIs and reusable components with Vue.js and Tailwind CSS, and optimized overall app performance.",
+    ],
+    // Apps worked on — `focus: true` marks the main areas of work
+    apps: [
+      { name: "Admin Panel", icon: "shield-checkmark-outline"},
+      { name: "Website", icon: "globe-outline"},
+      { name: "Employee App", icon: "people-outline" },
+      { name: "Delivery App", icon: "bicycle-outline" },
+      { name: "Dealer App", icon: "storefront-outline" },
+      { name: "Customer App", icon: "cart-outline" },
     ],
     tech: [
+      "Laravel",
+      "PHP",
+      "MYSQL",
+      "REST APIs",
       "Vue.js",
       "Tailwind CSS",
       "Bootstrap",
-      "Laravel",
-      "MYSQL",
       "Livewire",
       "Gitea",
     ],
@@ -55,22 +66,22 @@ const experience = [
   <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/10 blur-[120px] rounded-full" ></div>
 
   <div class="relative max-w-5xl mx-auto">
-    <div class="text-center mb-12 px-2">
+    <div class="text-center mb-12 px-2" data-reveal="blur">
 
       <p class="text-indigo-400 uppercase tracking-[4px] text-xs mb-4" > Career Journey</p>
-      <h2 class="text-3xl md:text-4xl mx-auto text-sm leading-relaxed">
-          Building scalable Applications,Responsive interfaces and optimized backend systems.
+      <h2 class="text-2xl text-blue-50 md:text-4xl mx-auto text-sm leading-relaxed">
+          Building scalable Applications, Responsive interfaces and optimized backend systems.
         </h2>
     </div>
 
     <div class="relative">
-      <div class="absolute left-5 sm:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent" ></div>
+      <div class="absolute left-5 sm:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent" data-reveal="line"></div>
 
       <div class="space-y-8">
         {experience.map((exp) => (
 
-          <div class="relative pl-10 sm:pl-16 group">
-            <div class="absolute left-0 top-5 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12  rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/40 z-10">
+          <div class="relative pl-10 sm:pl-16 group" data-reveal="right" style="--delay: 150ms">
+            <div class="absolute left-0 top-5 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12  rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/40 z-10 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" data-reveal="zoom" style="--delay: 400ms">
               <ion-icon name={exp.icon}  style="font-size: 20px; color: white;"></ion-icon>
             </div>
           
@@ -83,6 +94,7 @@ const experience = [
                     <h3 class="text-xl sm:text-lg font-bold leading-snug text-left">  {exp.role}</h3>
                     {exp.current && (
                       <span class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                         current
                       </span>
                     )}
@@ -114,6 +126,29 @@ const experience = [
                 ))}
 
               </div>
+
+              <!-- Apps worked on -->
+              {exp.apps && (
+                <div class="mb-5">
+                  <p class="text-gray-500 text-[11px] uppercase tracking-[2px] mb-2.5">Apps I worked on</p>
+                  <div class="flex flex-wrap gap-2">
+                    {exp.apps.map((app) => (
+                      <span class:list={[
+                        "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition duration-300 hover:-translate-y-0.5",
+                        app.focus
+                          ? "bg-gradient-to-r from-indigo-500/25 to-purple-500/25 border-indigo-400/40 text-white"
+                          : "bg-white/5 border-white/10 text-gray-300 hover:border-indigo-500/30",
+                      ]}>
+                        <ion-icon name={app.icon} style="font-size: 14px;" class={app.focus ? "text-indigo-300" : "text-gray-400"}></ion-icon>
+                        {app.name}
+                        {app.focus && (
+                          <span class="ml-0.5 px-1.5 py-0.5 rounded-md bg-indigo-500/30 text-indigo-200 text-[9px] uppercase tracking-wide">Main focus</span>
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <!-- Tech Stack -->
               <div class="flex flex-wrap gap-1.5">

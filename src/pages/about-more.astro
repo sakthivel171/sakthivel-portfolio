@@ -46,13 +46,13 @@ const interests = [
 <MainLayout>
   <section class="relative overflow-hidden min-h-screen bg-gradient-to-br from-[#020617] via-[#020617] to-[#0f172a] text-white py-10 px-4 sm:px-6 lg:px-8">
 
-    <div class="absolute top-0 left-0 w-80 h-80 bg-indigo-500/20 blur-[140px] rounded-full pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-0 left-0 w-80 h-80 bg-indigo-500/20 blur-[140px] rounded-full pointer-events-none animate-blob"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 blur-[140px] rounded-full pointer-events-none animate-blob-slow"></div>
 
     <div class="relative max-w-4xl mx-auto">
 
       <!-- ── Heading ── -->
-      <div class="mb-12">
+      <div class="mb-12" data-stagger="120" data-stagger-base="100">
         <div class="flex items-center gap-3 mb-5">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
             <ion-icon name="person-outline" style="font-size: 22px; color: white;"></ion-icon>
@@ -96,25 +96,25 @@ const interests = [
       </div>
 
       <!-- ── Stats Row ── -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14" data-stagger="120" data-stagger-type="zoom">
         {stats.map((s) => (
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-indigo-500/40 hover:bg-white/[0.07] hover:-translate-y-1 transition duration-300">
-            <div class="flex justify-center mb-2">
+          <div class="group bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-indigo-500/40 hover:bg-white/[0.07] hover:-translate-y-1.5 hover:shadow-xl hover:shadow-indigo-500/10 transition duration-300">
+            <div class="flex justify-center mb-2 group-hover:scale-125 transition-transform duration-300">
               <ion-icon name={s.icon} style="font-size: 22px; color: #818cf8;"></ion-icon>
             </div>
-            <p class="text-2xl font-bold text-indigo-400 mb-0.5">{s.value}</p>
+            <p class="text-2xl font-bold text-indigo-400 mb-0.5" data-counter>{s.value}</p>
             <p class="text-gray-500 text-xs">{s.label}</p>
           </div>
         ))}
       </div>
 
       <!-- ── Currently section ── -->
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-14 hover:border-indigo-500/40 transition duration-300">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-14 hover:border-indigo-500/40 transition duration-300" data-reveal="up">
         <div class="flex items-center gap-2 mb-4">
           <ion-icon name="construct-outline" style="font-size: 18px; color: #818cf8;"></ion-icon>
           <h3 class="text-base font-semibold text-white">Currently</h3>
         </div>
-        <div class="grid sm:grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-3 gap-4" data-stagger="120" data-stagger-base="250" data-stagger-type="left">
           <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
               <ion-icon name="briefcase-outline" style="font-size: 14px; color: #34d399;"></ion-icon>
@@ -147,13 +147,13 @@ const interests = [
 
       <!-- ── Interests ── -->
       <div class="mb-14">
-        <div class="flex items-center gap-2 mb-5">
+        <div class="flex items-center gap-2 mb-5" data-reveal="left">
           <ion-icon name="heart-outline" style="font-size: 18px; color: #818cf8;"></ion-icon>
           <h3 class="text-base font-semibold text-white">Interests</h3>
         </div>
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3" data-stagger="90" data-stagger-type="zoom">
           {interests.map((interest) => (
-            <span class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-indigo-500/40 hover:bg-indigo-500/10 hover:text-indigo-300 transition duration-200">
+            <span class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-indigo-500/40 hover:bg-indigo-500/10 hover:text-indigo-300 hover:-translate-y-0.5 transition duration-200">
               <ion-icon name={interest.icon} style="font-size: 15px;"></ion-icon>
               {interest.label}
             </span>
@@ -163,16 +163,16 @@ const interests = [
 
       <!-- ── Education ── -->
       <div class="mb-14">
-        <div class="flex items-center gap-2 mb-8">
+        <div class="flex items-center gap-2 mb-8" data-reveal="left">
           <ion-icon name="school-outline" style="font-size: 20px; color: #818cf8;"></ion-icon>
           <h3 class="text-2xl font-bold text-white">Education</h3>
         </div>
 
         <div class="space-y-5">
           {education.map((item) => (
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-indigo-500/40 hover:bg-white/[0.07] transition duration-300">
+            <div class="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-indigo-500/40 hover:bg-white/[0.07] hover:translate-x-1 transition duration-300" data-reveal="right">
               <div class="flex gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                   <ion-icon name={item.icon} style="font-size: 22px; color: #818cf8;"></ion-icon>
                 </div>
                 <div class="flex-1">
@@ -194,7 +194,7 @@ const interests = [
       </div>
 
       <!-- ── CTA ── -->
-      <div class="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8 text-center">
+      <div class="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8 text-center" data-reveal="zoom">
         <h3 class="text-xl font-bold text-white mb-2">  Interested in Working Together?</h3>
         <p class="text-gray-400 text-sm mb-6 max-w-sm mx-auto">
           Open to full-time opportunities, freelance projects and collaborative work..
@@ -202,7 +202,7 @@ const interests = [
         <div class="flex flex-wrap justify-center gap-4">
           <a
             href="/#contact"
-            class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/20"
+            class="btn-shine flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-sm font-semibold hover:from-indigo-400 hover:to-purple-500 hover:scale-105 transition duration-300 shadow-lg shadow-indigo-500/20"
           >
             <ion-icon name="mail-outline" style="font-size: 16px;"></ion-icon>
             Contact Me
